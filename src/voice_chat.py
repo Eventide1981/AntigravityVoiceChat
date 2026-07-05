@@ -29,40 +29,7 @@ ENERGY_THRESHOLD = 100 # RMS amplitude threshold for speech detection
 SILENCE_TIMEOUT = 6.0 # seconds of silence before finalizing (increased for rambling)
 MAX_RECORDING_TIME = 120.0 # max seconds to listen (increased to 2 minutes)
 
-# ==========================================
-# Text-to-Speech (TTS) MCP Server Setup
-# ==========================================
-mcp = fastmcp.FastMCP("Text-to-Speech Server")
-engine = pyttsx3.init()
 
-@mcp.tool()
-def speak_text(text: str) -> dict:
-    """
-    Synthesize speech from the provided text using pyttsx3.
-    """
-    global is_bot_speaking
-    try:
-        is_bot_speaking = True
-        
-        engine.setProperty('rate', 150)
-        engine.setProperty('volume', 1.0)
-        
-        print(f"\n[TTS] Speaking: {text}")
-        engine.say(text)
-        engine.runAndWait()
-        
-        return {
-            "success": True,
-            "message": f"Successfully spoke: '{text}'"
-        }
-    except Exception as e:
-        print(f"\n[TTS Error] {e}")
-        return {
-            "success": False,
-            "message": f"Error synthesizing speech: {str(e)}"
-        }
-    finally:
-        is_bot_speaking = False
 
 # ==========================================
 # Speech-to-Text (STT) Logic
