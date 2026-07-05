@@ -25,7 +25,7 @@ mode_lock = threading.Lock()
 FS = 44100
 CHUNK_DURATION = 0.1 # 100ms
 CHUNK_SAMPLES = int(FS * CHUNK_DURATION)
-ENERGY_THRESHOLD = 100 # RMS amplitude threshold for speech detection
+ENERGY_THRESHOLD = 50 # RMS amplitude threshold for speech detection
 SILENCE_TIMEOUT = 6.0 # seconds of silence before finalizing (increased for rambling)
 MAX_RECORDING_TIME = 120.0 # max seconds to listen (increased to 2 minutes)
 
@@ -149,7 +149,7 @@ def stt_worker():
             recording = []
             is_recording = False
             silence_start = None
-            lookback = deque(maxlen=10) # 1 second lookback buffer
+            lookback = deque(maxlen=30) # 3 second lookback buffer
             
             try:
                 with sd.InputStream(samplerate=FS, channels=1, dtype='int16', blocksize=CHUNK_SAMPLES) as stream:

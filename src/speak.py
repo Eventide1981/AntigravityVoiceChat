@@ -13,7 +13,7 @@ def main():
                 
             # Initialize pyttsx3 engine
             engine = pyttsx3.init()
-            engine.setProperty('rate', 150)
+            engine.setProperty('rate', 220)
             engine.setProperty('volume', 1.0)
             
             # Speak the text
