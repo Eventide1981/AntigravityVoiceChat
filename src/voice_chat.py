@@ -26,7 +26,7 @@ FS = 44100
 CHUNK_DURATION = 0.1 # 100ms
 CHUNK_SAMPLES = int(FS * CHUNK_DURATION)
 ENERGY_THRESHOLD = 50 # RMS amplitude threshold for speech detection
-SILENCE_TIMEOUT = 6.0 # seconds of silence before finalizing (increased for rambling)
+SILENCE_TIMEOUT = 3.0 # seconds of silence before finalizing
 MAX_RECORDING_TIME = 120.0 # max seconds to listen (increased to 2 minutes)
 
 
