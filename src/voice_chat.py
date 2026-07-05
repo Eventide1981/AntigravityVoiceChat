@@ -192,7 +192,7 @@ def stt_worker():
             except Exception as e:
                 print(f"[STT Worker Error] {e}")
 
-def toggle_mode():
+def toggle_mode(event=None):
     """Toggle between PTT and Continuous mode."""
     global current_mode
     with mode_lock:
